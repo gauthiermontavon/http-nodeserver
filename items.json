@@ -1,0 +1,90 @@
+  {
+    "results":
+  [{
+    "id": "1",
+    "title": "certificat salaire 2020",
+    "desc": "",
+    "group": "",
+    "tags": [
+      "impots","travail"
+    ],
+    "date": "2021-01-24",
+    "path": "2021/file_23kddf9344.pdf",
+    "md5": "",
+    "author": "gau",
+    "source": "A3-F2-F1-0C"
+  },
+  {
+    "id": "2",
+    "title": "attestation de don - croix rouge 2020",
+    "desc": "",
+    "group": "",
+    "tags": [
+      "impots","dons","attestation"
+    ],
+    "date": "2021-01-24",
+    "path": "2021/file_23kf9344.pdf",
+    "md5": "",
+    "author": "gau",
+    "source": "A3-F2-F1-0C"
+  },
+  {
+    "id": "3",
+    "title": "police assurance css 2021 - Lya",
+    "desc": "",
+    "group": "",
+    "tags": [
+      "assurance","contrat","maladie"
+    ],
+    "date": "2021-01-14",
+    "path": "2021/file_23458875.pdf",
+    "md5": "",
+    "author": "gau",
+    "source": "A3-F2-F1-0C"
+  },
+  {
+    "id": "4",
+    "title": "certificat garantie aspirateur Dyson",
+    "desc": "",
+    "group": "",
+    "tags": [
+      "garantie"
+    ],
+    "date": "2019-05-14",
+    "path": "2010/file_30939d.pdf",
+    "md5": "",
+    "author": "gau",
+    "source": "A3-F2-F1-0C"
+  },
+  {
+    "id": "5",
+    "title": "décompte prestations 2020 Visana Gau",
+    "desc": "",
+    "group": "",
+    "tags": [
+      "assurance", "maladie"
+    ],
+    "date": "2020-12-12",
+    "path": "2020/file_1204844.pdf",
+    "md5": "",
+    "author": "gau",
+    "source": "A3-F2-F1-0C"
+  },
+  {
+    "id": "6",
+    "title": "Facture maison - installation sanitaire - schaller",
+    "desc": "",
+    "group": "",
+    "tags": [
+      "maison","facture"
+    ],
+    "date": "2019-02-11",
+    "path": "2019/file_15069882.pdf",
+    "md5": "",
+    "author": "gau",
+    "source": "A3-F2-F1-0C"
+  }],
+    "meta":{
+      "totalResults":6
+    }
+  }
