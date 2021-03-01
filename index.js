@@ -1,7 +1,10 @@
 const express = require('express');
 const fs = require('fs');
 const cors = require('cors');
+const cron = require('node-cron');
+
 const app = express();
+
 
 app.use(cors());
 
@@ -179,5 +182,10 @@ const getData = () => {
 }
 /* util functions ends */
 
+
+// Schedule tasks to be run on the server.
+cron.schedule('* * * * *', function() {
+  console.log('running a task every minute');
+});
 
 app.listen(3000, () => console.log('Gator app listening on port 3000!'));
