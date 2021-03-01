@@ -2,6 +2,7 @@ const express = require('express');
 const fs = require('fs');
 const cors = require('cors');
 const cron = require('node-cron');
+const db = require('./services/db');
 
 const app = express();
 
@@ -31,7 +32,7 @@ app.get('/item/list', (req, res) => {
   }
   //    let intersection = items.filter(x => arrB.includes(x));
   if(tagFilter){
-    items = items.filter(item => 
+    items = items.filter(item =>
     item.tags.filter(x => tagFilter.includes(x)).length > 0);
   }
 
@@ -42,13 +43,18 @@ app.get('/item/list', (req, res) => {
   const initialPos = pageNumber * pageSize;
 
   const itemsPage = items.slice(initialPos, initialPos + pageSize);
-  
+
 
   res.status(200).json({meta:{totalCount:items.length},payload:itemsPage});
-    //res.send(JSON.parse(jsonData))    
+    //res.send(JSON.parse(jsonData))
 
   //res.send(items)
 });
+
+app.get('/testdb',(req,res) => {
+  db.initDb();
+}
+);
 
 app.get('/tags/used',(req,res) => {
   let items = Object.values(getData().results);
@@ -59,9 +65,9 @@ app.get('/tags/used',(req,res) => {
         if(usedTags.indexOf(tag.toLowerCase())<0){
           usedTags.push(tag.toLowerCase());
         }
-        
+
       }
-  
+
     )
   );
 res.status(200).json({usedTags});
@@ -72,7 +78,7 @@ res.status(200).json({usedTags});
 //-----------------------------
 //TODO: virer - version essai
 app.get('/list', (req, res) => {
-	
+
 	const jsonData = fs.readFileSync('./items.json');
 
    const queryParams = req.query;
@@ -101,7 +107,7 @@ app.get('/list', (req, res) => {
     const itemsPage = items.slice(initialPos, initialPos + pageSize);
 
     res.status(200).json({payload:itemsPage});
-    //res.send(JSON.parse(jsonData))    
+    //res.send(JSON.parse(jsonData))
 
 });
 
@@ -110,14 +116,14 @@ app.get('/list', (req, res) => {
 app.post('/item/add', (req, res) => {
     //get the existing item
     const existItems = getData()
-    
+
     //get the new user data from post request
     const itemData = req.body
     //check if the itemData fields are missing
     if (itemData.id == null || itemData.title == null || itemData.date == null || itemData.path == null) {
         return res.status(401).send({error: true, msg: 'Item data missing'})
     }
-    
+
     //check if the username exist already
     const findExist = existItems.find( item => item.id === itemData.id )
     if (findExist) {
@@ -138,7 +144,7 @@ app.patch('/item/update/:id', (req, res) => {
     const itemData = req.body
     //get the existing user data
     const existItems = getData()
-    //check if the username exist or not       
+    //check if the username exist or not
     const findExist = existItems.find( item => item.id === itemId )
     if (!findExist) {
         return res.status(409).send({error: true, msg: 'item not exist'})
@@ -164,7 +170,7 @@ app.delete('/user/delete/:id', (req, res) => {
     //save the filtered data
     saveData(filterItem)
     res.send({success: true, msg: 'item removed successfully'})
-    
+
 })
 
 
@@ -178,7 +184,7 @@ const saveData = (data) => {
 //get the user data from json file
 const getData = () => {
     const jsonData = fs.readFileSync('./items.json')
-    return JSON.parse(jsonData)    
+    return JSON.parse(jsonData)
 }
 /* util functions ends */
 

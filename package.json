@@ -12,6 +12,7 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "lokijs": "^1.5.11",
     "node-cron": "^2.0.3"
   }
 }
