@@ -3,16 +3,21 @@ const loki = require('lokijs');
 
 exports.initDb = function(){
   const databaseInit = () => {
-    let itemsCollection = db.getCollection('items');
+    itemsCollection = lokiDb.getCollection('items');
     if(itemsCollection ===null){
-      itemsCollection = db.addCollection('items')
+      itemsCollection = lokiDb.addCollection('items')
 ;    }
   }
-  const db = new loki('loki.json',{
+   const lokiDb = new loki('loki.json',{
     autoload:true,
     autoloadCallback:databaseInit,
     autosave:true,
     autosdaveInterval:4000
   });
 
-}
+  return lokiDb;
+
+};
+
+//
+//stackoverflow.com/questions/31760480

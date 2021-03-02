@@ -4,6 +4,8 @@ const cors = require('cors');
 const cron = require('node-cron');
 const db = require('./services/db');
 
+const fileutil = require('./util/file');
+
 const app = express();
 
 
@@ -174,7 +176,9 @@ app.delete('/user/delete/:id', (req, res) => {
 })
 
 
+app.get('db/list',(req,res)=> {
 
+});
 /* util functions */
 //read the user data from json file
 const saveData = (data) => {
@@ -190,8 +194,21 @@ const getData = () => {
 
 
 // Schedule tasks to be run on the server.
-cron.schedule('* * * * *', function() {
+cron.schedule('5 * * * * *', function() {
   console.log('running a task every minute');
+
+
+
+    let objImport = Object.values(fileutil.getJsonDataFromFileToImport('ae3de.json'));
+let jsonObj = fileutil.getJsonDataFromFileToImport('ae3de.json');
+    console.log('obj to import:'+jsonObj.title);
+    console.log('obj to import:'+jsonObj.id);
+
+
+  var lokiDb = db.initDb();
+  lokiDb.getCollection('items').insert(jsonObj);
+
+  console.log('db list:'+ lokiDb.getCollection('items').data());
 });
 
 app.listen(3000, () => console.log('Gator app listening on port 3000!'));
